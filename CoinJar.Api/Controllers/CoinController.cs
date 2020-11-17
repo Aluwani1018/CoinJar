@@ -41,7 +41,7 @@ namespace CoinJar.Api.Controllers
             return Ok();
         }
 
-        [HttpGet()]
+        [HttpGet("TotalAmount")]
         [SwaggerOperation("Get Coins Total Amount")]
         [SwaggerResponse(statusCode: 200, type: typeof(CoinResponse), description: "Success Request")]
         public IActionResult GetTotalAmount()
