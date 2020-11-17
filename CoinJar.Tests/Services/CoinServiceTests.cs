@@ -50,10 +50,9 @@ namespace CoinJar.Tests.Services
         [Fact]
         public void Should_Get_Total_Amount_When_No_Coin_Captured()
         {
-            decimal expectedTotalAmount = 0;
-
             _unitOfWorkMock.Setup(r => r.Coins.GetAll()).Returns(new List<Coin>());
             
+            decimal expectedTotalAmount = 0;
             decimal totalAmount = _coinService.GetTotalAmount();
 
             Assert.Equal(expectedTotalAmount, totalAmount);
@@ -62,12 +61,9 @@ namespace CoinJar.Tests.Services
         [Fact]
         public void Should_Get_Total_Amount_For_Existing_Coins()
         {
-            List<Coin> coinList = DataUtilities.GetCoinsList();
-
-            decimal expectedTotalAmount = coinList.Sum(x => x.Amount);
-
             _unitOfWorkMock.Setup(r => r.Coins.GetAll()).Returns(DataUtilities.GetCoinsList());
 
+            decimal expectedTotalAmount = DataUtilities.GetCoinsList().Sum(x => x.Amount);
             decimal totalAmount = _coinService.GetTotalAmount();
 
             Assert.Equal(expectedTotalAmount, totalAmount);
